@@ -25,7 +25,22 @@ for (let row = FIRST_ROW; row < 270; row++) {
 			}
 		};
 		op.updateMany.filter[variable] = value_cell.v;
-		op.updateMany.update.$set[variable] = labelsWs[LABEL_COLUMN + row].v;
+		if (variable.endsWith("FLAG")) {
+			op.updateMany.update.$set[variable] = Boolean(value_cell.v);
+		}
+		else {
+			switch (labelsWs[LABEL_COLUMN + row].v) {
+				case "No":
+					op.updateMany.update.$set[variable] = false;
+					break;
+				case "Yes":
+					op.updateMany.update.$set[variable] = true;
+					break;
+				default:
+					op.updateMany.update.$set[variable] = labelsWs[LABEL_COLUMN + row].v;
+					break;
+			}
+		}
 		writeOps.push(op);
 		value_cell = labelsWs[VALUE_COLUMN + ++row];
 	}
