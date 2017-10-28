@@ -1,0 +1,16 @@
+{
+	"name": "ccihe-translator",
+	"version": "0.1.0",
+	"description": "Updates MongoDB collection from CCIHE public data file to use string labels instead of numerical values",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Philip Fulgham",
+	"license": "MIT",
+	"dependencies": {
+		"mongodb": "^2.2.33",
+		"xlsx": "^0.11.7"
+	}
+}
