@@ -12,5 +12,10 @@
 	"dependencies": {
 		"mongodb": "^2.2.33",
 		"xlsx": "^0.11.7"
+	},
+	"config": {
+		"collection": "colleges",
+		"db": "ngcollege",
+		"url": "mongodb://localhost:27017/"
 	}
 }

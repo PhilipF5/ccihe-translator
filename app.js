@@ -3,9 +3,12 @@ const VALUE_COLUMN = "C";
 const LABEL_COLUMN = "D";
 const FIRST_ROW = 2;
 
-var mongo = require("mongodb");
-var xlsx = require("xlsx");
+var mongo = require("mongodb").MongoClient;
+var url = process.env.npm_package_config_url;
+var db = process.env.npm_package_config_db;
+var coll = process.env.npm_package_config_collection;
 
+var xlsx = require("xlsx");
 var workbook = xlsx.readFile("source.xlsx");
 var labelsWs = workbook.Sheets["Labels"];
 var writeOps = [];
@@ -45,3 +48,9 @@ for (let row = FIRST_ROW; row < 270; row++) {
 		value_cell = labelsWs[VALUE_COLUMN + ++row];
 	}
 }
+
+mongo.connect(url + db, (err, db) => {
+	var collection = db.collection(coll);
+	collection.bulkWrite(writeOps);
+	db.close();
+});
