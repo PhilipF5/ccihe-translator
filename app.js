@@ -18,7 +18,7 @@ for (let row = FIRST_ROW; row < 270; row++) {
 	if (!variable_cell) {
 		continue;
 	}
-	let variable = variable_cell.v;
+	let variable = variable_cell.v.trim();
 	let value_cell = labelsWs[VALUE_COLUMN + row];
 	while (value_cell) {
 		let op = {
